@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="tap_to_launch">클릭하여 어플을 실행하세요</string>
+    <string name="tap_to_launch">클릭하여 어플을 실행합니다.</string>
     <string name="start">시작</string>
     <string name="stop">중지</string>
     <string name="add">추가</string>
     <string name="choose_app">어플리케이션 선택</string>
-    <string name="unknown">알수없음</string>
-    <string name="stop_to_remove">목록에 있는 어플을 제거하기 전 서비스를 중지 하세요</string>
+    <string name="unknown">알수 없음</string>
+    <string name="stop_to_remove">목록에 있는 앱을 제거하기 전에 서비스를 중지해야 합니다.</string>
 </resources>
