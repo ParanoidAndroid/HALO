@@ -7,6 +7,9 @@
     <string name="stop">Stop</string>
     <string name="add">Pin</string>
     <string name="choose_app">Pin application</string>
+    <string name="icon_picker_type">Select icon type:</string>
+    <string name="icon_default">Default</string>
+    <string name="icon_custom">Custom</string>
     <string name="unknown">Unknown</string>
 
     <string name="stop_to_remove">Please stop the service before removing any application from the list</string>

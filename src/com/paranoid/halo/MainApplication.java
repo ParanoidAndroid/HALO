@@ -6,12 +6,11 @@ import android.content.Context;
 
 public class MainApplication extends Application {
     @Override
-    public void onCreate()
-    {
+    public void onCreate() {
         super.onCreate();
 
         if (Utils.getStatus(this)) {
-            String[] packages = Utils.loadArray("items", this);
+            String[] packages = Utils.loadArray(this);
             if(packages != null) {
                 NotificationManager notificationManager =
                         (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);

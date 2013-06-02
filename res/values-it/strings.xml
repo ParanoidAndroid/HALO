@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">HALO)))</string>
-    <string name="tap_to_launch">Tocca per avviare l'applicazione</string>
+    <string name="tap_to_launch">Tocca per avviare l\'applicazione</string>
     <string name="start">Avvia</string>
     <string name="stop">Stop</string>
     <string name="add">Vincola</string>

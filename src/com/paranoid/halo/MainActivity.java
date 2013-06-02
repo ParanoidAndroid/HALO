@@ -1,15 +1,23 @@
 package com.paranoid.halo;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ActionBar;
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import com.paranoid.halo.ApplicationsDialog.AppAdapter;
 import com.paranoid.halo.ApplicationsDialog.AppItem;
 
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
@@ -21,6 +29,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +39,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 public class MainActivity extends PreferenceActivity {
+
+    private static final int CUSTOM_USER_ICON = 0;
     
     private static final int MENU_ADD = 0;
     private static final int MENU_ACTION = 1;
@@ -40,6 +51,8 @@ public class MainActivity extends PreferenceActivity {
     private PreferenceScreen mRoot;
     private List<ResolveInfo> mInstalledApps;
     private AppAdapter mAppAdapter;
+    private Preference mPreference;
+    private File mImageTmp;
     private OnPreferenceClickListener mOnItemClickListener = new OnPreferenceClickListener(){
             @Override
             public boolean onPreferenceClick(Preference arg0) {
@@ -47,6 +60,7 @@ public class MainActivity extends PreferenceActivity {
                     Toast.makeText(mContext, R.string.stop_to_remove, Toast.LENGTH_SHORT).show();
                 } else {
                     mRoot.removePreference(arg0);
+                    Utils.removeCustomApplicationIcon(arg0.getSummary().toString(), mContext);
                     savePreferenceItems(false);
                     invalidateOptionsMenu();
                 }
@@ -59,15 +73,20 @@ public class MainActivity extends PreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mContext = this;
+
         ActionBar bar = getActionBar();
-        BitmapDrawable background = new BitmapDrawable(BitmapFactory.decodeResource(getResources(), R.drawable.ab_background));
+        BitmapDrawable background = new BitmapDrawable(BitmapFactory
+                .decodeResource(getResources(), R.drawable.ab_background));
         background.setTileModeX(Shader.TileMode.CLAMP);
         bar.setBackgroundDrawable(background);
         bar.setDisplayShowTitleEnabled(false);
 
         mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        mContext = this;
+
+        mImageTmp = new File(mContext.getCacheDir() + File.separator + "target.tmp");
+
         mShowing = Utils.getStatus(mContext);
         final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -118,22 +137,64 @@ public class MainActivity extends PreferenceActivity {
                     @Override
                     public void onItemClick(AdapterView<?> arg0, View arg1,
                             int arg2, long arg3) {
-                        AppItem info = (AppItem) arg0.getItemAtPosition(arg2);
+                        final AppItem info = (AppItem) arg0.getItemAtPosition(arg2);
+                        final String packageName = info.packageName;
                         for(int i = 0; i<mRoot.getPreferenceCount(); i++){
                             if(mRoot.getPreference(i).getSummary()
-                                    .equals(info.packageName)){
+                                    .equals(packageName)){
                                 return;
                             }
                         }
-                        Preference item = new Preference(mContext);
-                        item.setTitle(info.title);
-                        item.setSummary(info.packageName);
-                        item.setIcon(info.icon);
-                        item.setOnPreferenceClickListener(mOnItemClickListener);
-                        mRoot.addPreference(item);
-                        savePreferenceItems(true);
-                        invalidateOptionsMenu();
-                        dialog.cancel();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                        builder.setTitle(R.string.icon_picker_type)
+                                .setItems(R.array.icon_types, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog2, int which) {
+                                        mPreference = new Preference(mContext);
+                                        mPreference.setOnPreferenceClickListener(mOnItemClickListener);
+                                        mPreference.setTitle(info.title);
+                                        mPreference.setSummary(packageName);
+                                        mPreference.setIcon(info.icon);
+                                        mRoot.addPreference(mPreference);
+                                        invalidateOptionsMenu();
+                                        dialog.cancel();
+                                        switch(which) {
+                                            case 0: // Default
+                                                savePreferenceItems(true);
+                                                break;
+                                            case 1: // Custom user icon
+                                                Intent intent = new Intent(Intent.ACTION_GET_CONTENT
+                                                        , null);
+                                                intent.setType("image/*");
+                                                intent.putExtra("crop", "true");
+                                                intent.putExtra("scale", true);
+                                                intent.putExtra("scaleUpIfNeeded", false);
+                                                intent.putExtra("outputFormat",
+                                                        Bitmap.CompressFormat.PNG.toString());
+                                                intent.putExtra("aspectX", 1);
+                                                intent.putExtra("aspectY", 1);
+                                                intent.putExtra("outputX", 162);
+                                                intent.putExtra("outputY", 162);
+                                                try {
+                                                    mImageTmp.createNewFile();
+                                                    mImageTmp.setWritable(true, false);
+                                                    intent.putExtra(MediaStore.EXTRA_OUTPUT,
+                                                            Uri.fromFile(mImageTmp));
+                                                    intent.putExtra("return-data", false);
+                                                    startActivityForResult(intent, CUSTOM_USER_ICON);
+                                                    dialog.cancel();
+                                                } catch (IOException e) {
+                                                    // We could not write temp file
+                                                    e.printStackTrace();
+                                                } catch (ActivityNotFoundException e) {
+                                                    e.printStackTrace();
+                                                }
+                                                break;
+                                        }
+                                    }
+                                }
+                                );
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
                     }
                 });
                 dialog.show();
@@ -156,6 +217,34 @@ public class MainActivity extends PreferenceActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK) return;
+        switch (requestCode) {
+            case CUSTOM_USER_ICON:
+                if (resultCode == Activity.RESULT_OK) {
+                    File image = new File(mContext.getFilesDir() + File.separator
+                            + "icon_" + System.currentTimeMillis() + ".png");
+                    String path = image.getAbsolutePath();
+                    if (mImageTmp.exists()) {
+                        mImageTmp.renameTo(image);
+                    }
+                    image.setReadOnly();
+                    String packageName = mPreference.getSummary().toString();
+                    Utils.setCustomApplicationIcon(packageName, path, mContext);
+                    Drawable d = new BitmapDrawable(getResources(), Utils.getCustomApplicationIcon(
+                            packageName, mContext));
+                    mPreference.setIcon(d);
+                    savePreferenceItems(true);
+                } else {
+                    if (mImageTmp.exists()) {
+                        mImageTmp.delete();
+                    }
+                }
+                break;
+        }
+    }
     
     public void savePreferenceItems(boolean create){
         ArrayList<String> items = new ArrayList<String>();
@@ -165,11 +254,11 @@ public class MainActivity extends PreferenceActivity {
             items.add(packageName);
             if(create && mShowing) Utils.createNotification(mContext, mNotificationManager, packageName);
         }
-        Utils.saveArray(items.toArray(new String[items.size()]), "items", mContext);
+        Utils.saveArray(items.toArray(new String[items.size()]), mContext);
     }
     
     public void loadPreferenceItems(){
-        String[] packages = Utils.loadArray("items", mContext);
+        String[] packages = Utils.loadArray(mContext);
         if(packages == null) return;
         for(String packageName : packages){
             Preference app = new Preference(mContext);
