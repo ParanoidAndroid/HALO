@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">HALO)))</string>
-    <string name="tap_to_launch">Pitgeu per llançar l'aplicació</string>
+    <string name="tap_to_launch">Pitgeu per llançar l\'aplicació</string>
     <string name="start">Inicia</string>
     <string name="stop">Atura</string>
     <string name="add">Afegir</string>
