@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HALO)))</string>
+    <string name="tap_to_launch">Touchez pour lancer l\'application</string>
+    <string name="start">Lancer</string>
+    <string name="stop">Arrêter</string>
+    <string name="add">Ajouter</string>
+    <string name="choose_app">Sélectionner une application</string>
+    <string name="icon_picker_type">Sélectionnez le type d\'icône:</string>
+    <string name="icon_default">Par défaut</string>
+    <string name="icon_custom">Personnalisé</string>
+    <string name="unknown">Inconnue</string>
+
+    <string name="stop_to_remove">S\'il vous plaît arrêter le service avant de retirer une application</string>
+    
+</resources>
