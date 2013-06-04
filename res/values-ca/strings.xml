@@ -7,7 +7,7 @@
     <string name="stop">Atura</string>
     <string name="add">Afegir</string>
     <string name="choose_app">Selecciona aplicació</string>
-    <string name="icon_picker_type">Seleccioneu el tipus d'icona:</string>
+    <string name="icon_picker_type">Seleccioneu el tipus d\'icona:</string>
     <string name="icon_default">Per defecte</string>
     <string name="icon_custom">Personalitzat</string>
     <string name="unknown">Desconegut</string>
