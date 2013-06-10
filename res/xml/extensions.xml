@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Notes">
+        <EditTextPreference 
+            android:key="ext_note1" 
+            android:title="@string/ext_note1"/>
+        <EditTextPreference 
+            android:key="ext_note2" 
+            android:title="@string/ext_note2"/>
+        <EditTextPreference 
+            android:key="ext_note3" 
+            android:title="@string/ext_note3"/>
+        <EditTextPreference 
+            android:key="ext_note4" 
+            android:title="@string/ext_note4"/>
+        
+    </PreferenceCategory>
+    
+</PreferenceScreen>
