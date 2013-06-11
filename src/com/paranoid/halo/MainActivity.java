@@ -105,6 +105,16 @@ public class MainActivity extends PreferenceActivity {
         loadExtensions();
     }
     
+	public void onStart(){
+		super.onStart();
+		loadExtensions();
+	}
+	
+	public void onResume(){
+		super.onResume();
+		loadExtensions();
+	}
+	
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem item = menu.getItem(1);
