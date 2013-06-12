@@ -7,8 +7,16 @@
     <string name="stop">Stopp</string>
     <string name="add">Anheften</string>
     <string name="choose_app">Applikation anheften</string>
+    <string name="icon_picker_type">Symboltyp auswählen:</string>
+    <string name="icon_default">Standard</string>
+    <string name="icon_custom">Eigenen</string>
     <string name="unknown">Unbekannt</string>
 
     <string name="stop_to_remove">Bitte beende den Dienst bevor du eine Applikation von der Liste entfernst</string>
     
+    <string name="ext_note1">Notiz 1</string>
+    <string name="ext_note2">Notiz 2</string>
+    <string name="ext_note3">Notiz 3</string>
+    <string name="ext_note4">Notiz 4</string>
+    <string name="extensions">Erweiterungen</string>
 </resources>
