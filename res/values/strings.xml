@@ -11,7 +11,13 @@
     <string name="icon_default">Default</string>
     <string name="icon_custom">Custom</string>
     <string name="unknown">Unknown</string>
-
+    
     <string name="stop_to_remove">Please stop the service before removing any application from the list</string>
     
+    <string name="ext_note1">Note 1</string>
+    <string name="ext_note2">Note 2</string>
+    <string name="ext_note3">Note 3</string>
+    <string name="ext_note4">Note 4</string>
+    <string name="extensions">Extensions</string>
+
 </resources>
