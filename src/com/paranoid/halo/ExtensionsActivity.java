@@ -27,13 +27,15 @@ public class ExtensionsActivity extends PreferenceActivity implements OnSharedPr
         addPreferencesFromResource(R.xml.extensions);
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     protected void onResume(){
         super.onResume();
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
     
-    public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences, final String key){
+    @SuppressWarnings("deprecation")
+	public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences, final String key){
     	Preference pref_note1 = findPreference("ext_note1");
         Preference pref_note2 = findPreference("ext_note2");
         Preference pref_note3 = findPreference("ext_note3");
@@ -107,12 +109,12 @@ public class ExtensionsActivity extends PreferenceActivity implements OnSharedPr
 		            notif.tickerText = note3;
 				ext_notification_manager.notify(3, notif);
 				
-				pref_note2.setSummary(note3);
+				pref_note3.setSummary(note3);
     	}
     	
     	if(note1.length() == 0){
 			ext_notification_manager.cancel(3);
-			pref_note2.setSummary(note3);
+			pref_note3.setSummary(note3);
 		}
     	
     	if (key.equals(KEY_EXT_NOTE_4)) {
@@ -128,12 +130,12 @@ public class ExtensionsActivity extends PreferenceActivity implements OnSharedPr
 		            notif.tickerText = note4;
 				ext_notification_manager.notify(4, notif);
 				
-				pref_note2.setSummary(note4);
+				pref_note4.setSummary(note4);
     	}
     	
     	if(note1.length() == 0){
 			ext_notification_manager.cancel(4);
-			pref_note2.setSummary(note4);
+			pref_note4.setSummary(note4);
 		}
     	
     }
