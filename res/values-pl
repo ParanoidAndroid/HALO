@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HALO)))</string>
+    <string name="tap_to_launch">Dotknij, żeby uruchomić</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="add">Dodaj</string>
+    <string name="choose_app">Dodaj aplikację</string>
+    <string name="icon_picker_type">Wybierz ikonę:</string>
+    <string name="icon_default">Standardowa</string>
+    <string name="icon_custom">Inna</string>
+    <string name="unknown">Nieznany</string>
+    
+    <string name="stop_to_remove">Proszę zatrzymać usługę przed usunięciem aplikacji z listy</string>
+    
+    <string name="ext_note1">Nota 1</string>
+    <string name="ext_note2">Nota 2</string>
+    <string name="ext_note3">Nota 3</string>
+    <string name="ext_note4">Nota 4</string>
+    <string name="extensions">Rozszerzenia</string>
+
+</resources>
