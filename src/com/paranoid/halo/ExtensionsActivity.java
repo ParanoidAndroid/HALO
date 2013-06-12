@@ -14,8 +14,6 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 
 public class ExtensionsActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener{
-    
-	MainActivity mainActivity;
 	
 	public static final String KEY_EXT_NOTE_1 = "ext_note1";
 	public static final String KEY_EXT_NOTE_2 = "ext_note2";
@@ -27,13 +25,11 @@ public class ExtensionsActivity extends PreferenceActivity implements OnSharedPr
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.extensions);
-        setSummary();
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-        setSummary();
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
     
