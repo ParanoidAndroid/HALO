@@ -44,6 +44,7 @@ public class MainActivity extends PreferenceActivity {
     
     private static final int MENU_ADD = 0;
     private static final int MENU_ACTION = 1;
+    private static final int MENU_EXTENSIONS = 2;
     
     private NotificationManager mNotificationManager;
     private Context mContext;
@@ -99,7 +100,7 @@ public class MainActivity extends PreferenceActivity {
         loadPreferenceItems();
     }
     
-    @Override
+	@Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem item = menu.getItem(1);
         item.setVisible(mRoot.getPreferenceCount() > 0);
@@ -118,6 +119,8 @@ public class MainActivity extends PreferenceActivity {
         menu.add(Menu.NONE, MENU_ACTION, 0, R.string.start)
             .setIcon(R.drawable.ic_start)
             .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+        menu.add(Menu.NONE, MENU_EXTENSIONS, 0, R.string.extensions)
+        	.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
         return true;
     }
 
@@ -214,6 +217,10 @@ public class MainActivity extends PreferenceActivity {
                 Utils.saveStatus(mShowing, mContext);
                 invalidateOptionsMenu();
                 break;
+            case MENU_EXTENSIONS:
+            	Intent intent = new Intent(this, ExtensionsActivity.class);
+    	        this.startActivity(intent);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -269,4 +276,5 @@ public class MainActivity extends PreferenceActivity {
             mRoot.addPreference(app);
         }
     }
+
 }

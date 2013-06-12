@@ -14,4 +14,10 @@
 
     <string name="stop_to_remove">Si us plau atureu el servei abans de treure qualsevol aplicació</string>
     
+    <string name="ext_note1">Nota 1</string>
+    <string name="ext_note2">Nota 2</string>
+    <string name="ext_note3">Nota 3</string>
+    <string name="ext_note4">Nota 4</string>
+    <string name="extensions">Extensions</string>
+    
 </resources>
