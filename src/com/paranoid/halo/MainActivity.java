@@ -29,11 +29,13 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.provider.MediaStore;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat.Builder;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -303,17 +305,21 @@ public class MainActivity extends PreferenceActivity {
     		NotificationManager ext_notification_manager =
 					(NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
     		
+    		Intent intent = new Intent(this, ExtensionsActivity.class);
+    	    PendingIntent ext_intent = PendingIntent.getActivity(this, 0, intent, 0);
+    		
     		try{	
     		if(note1.length() > 0){
     				NotificationCompat.Builder ext_builder =
     			        new NotificationCompat.Builder(this)
-    					.setSmallIcon(R.drawable.ic_launcher)
+    					.setSmallIcon(R.drawable.ic_add)
+    					.setContentIntent(ext_intent)
     			        .setContentTitle(note1);
     				
     				 Notification notif = ext_builder.build();
     		            notif.flags |= Notification.FLAG_ONGOING_EVENT;
     		            notif.priority = Notification.PRIORITY_MIN;
-    				
+    		            notif.tickerText = note1;
     				ext_notification_manager.notify(1, notif);
     			}
     			if(note1.length() == 0){
@@ -323,13 +329,14 @@ public class MainActivity extends PreferenceActivity {
     			if(note2.length() > 0){
     				NotificationCompat.Builder ext_builder =
     			        new NotificationCompat.Builder(this)
-    					.setSmallIcon(R.drawable.ic_launcher)
+    					.setSmallIcon(R.drawable.ic_add)
+    					.setContentIntent(ext_intent)
     			        .setContentTitle(note2);
     				
     				Notification notif = ext_builder.build();
 		            notif.flags |= Notification.FLAG_ONGOING_EVENT;
 		            notif.priority = Notification.PRIORITY_MIN;
-				
+		            notif.tickerText = note2;
 				ext_notification_manager.notify(2, notif);    			
 				}
     			
@@ -340,13 +347,14 @@ public class MainActivity extends PreferenceActivity {
     			if(note3.length() > 0){
     				NotificationCompat.Builder ext_builder =
     			        new NotificationCompat.Builder(this)
-    					.setSmallIcon(R.drawable.ic_launcher)
+    					.setSmallIcon(R.drawable.ic_add)
+    					.setContentIntent(ext_intent)
     			        .setContentTitle(note3);
     				
     				Notification notif = ext_builder.build();
 		            notif.flags |= Notification.FLAG_ONGOING_EVENT;
 		            notif.priority = Notification.PRIORITY_MIN;
-				
+		            notif.tickerText = note3;
 				ext_notification_manager.notify(3, notif);    			
 				}
     			
@@ -356,15 +364,16 @@ public class MainActivity extends PreferenceActivity {
     			
     			if(note4.length() > 0){
     				NotificationCompat.Builder ext_builder =
-    			        new NotificationCompat.Builder(this)
-    					.setSmallIcon(R.drawable.ic_launcher)
-    			        .setContentTitle(note4);
-    				
-    				Notification notif = ext_builder.build();
-		            notif.flags |= Notification.FLAG_ONGOING_EVENT;
-		            notif.priority = Notification.PRIORITY_MIN;
-				
-				ext_notification_manager.notify(4, notif);    			
+        			        new NotificationCompat.Builder(this)
+        					.setSmallIcon(R.drawable.ic_add)
+        					.setContentIntent(ext_intent)
+        			        .setContentTitle(note4);
+        				
+        				 Notification notif = ext_builder.build();
+        		            notif.flags |= Notification.FLAG_ONGOING_EVENT;
+        		            notif.priority = Notification.PRIORITY_MIN;
+        		            notif.tickerText = note4;
+        				ext_notification_manager.notify(4, notif);     			
 				}
     			
     			if(note4.length() == 0){
