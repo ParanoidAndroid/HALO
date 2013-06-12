@@ -25,6 +25,24 @@ public class ExtensionsActivity extends PreferenceActivity implements OnSharedPr
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.extensions);
+        
+    	Preference pref_note1 = findPreference("ext_note1");
+        Preference pref_note2 = findPreference("ext_note2");
+        Preference pref_note3 = findPreference("ext_note3");
+        Preference pref_note4 = findPreference("ext_note4");
+        
+    	SharedPreferences ext_prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        
+    	String note1 = ext_prefs.getString("ext_note1", null);
+    	String note2 = ext_prefs.getString("ext_note2", null);
+    	String note3 = ext_prefs.getString("ext_note3", null);
+    	String note4 = ext_prefs.getString("ext_note4", null);
+        
+        pref_note1.setSummary(note1);
+        pref_note2.setSummary(note2);
+        pref_note3.setSummary(note3);
+        pref_note4.setSummary(note4);
+        
     }
 
     @SuppressWarnings("deprecation")
@@ -34,21 +52,20 @@ public class ExtensionsActivity extends PreferenceActivity implements OnSharedPr
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
     
-    @SuppressWarnings("deprecation")
 	public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences, final String key){
-    	Preference pref_note1 = findPreference("ext_note1");
-        Preference pref_note2 = findPreference("ext_note2");
-        Preference pref_note3 = findPreference("ext_note3");
-        Preference pref_note4 = findPreference("ext_note4");
-        
-    	SharedPreferences ext_prefs = PreferenceManager.getDefaultSharedPreferences(this);
-   		
+		Preference pref_note1 = findPreference("ext_note1");
+	    Preference pref_note2 = findPreference("ext_note2");
+	    Preference pref_note3 = findPreference("ext_note3");
+	    Preference pref_note4 = findPreference("ext_note4");
+	    
+		SharedPreferences ext_prefs = PreferenceManager.getDefaultSharedPreferences(this);
+	    
 		String note1 = ext_prefs.getString("ext_note1", null);
 		String note2 = ext_prefs.getString("ext_note2", null);
 		String note3 = ext_prefs.getString("ext_note3", null);
-		String note4 = ext_prefs.getString("ext_note4", null);
-    	
-    	NotificationManager ext_notification_manager =
+		String note4 = ext_prefs.getString("ext_note4", null);		
+		
+		NotificationManager ext_notification_manager =
 				(NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		
 		Intent intent = new Intent(this, ExtensionsActivity.class);
