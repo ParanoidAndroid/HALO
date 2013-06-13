@@ -8,7 +8,7 @@
     <string name="start">Iniciar</string>
     <string name="stop">Parar</string>
     <string name="add">Fixar</string>
-    <string name="choose_app">Ficar aplicação</string>
+    <string name="choose_app">Fixar aplicação</string>
     <string name="icon_picker_type">Selecione o tipo de ícone:</string>
     <string name="icon_default">Padrão</string>
     <string name="icon_custom">Customizado</string>
