@@ -7,8 +7,17 @@
     <string name="stop">Stop</string>
     <string name="add">Vincola</string>
     <string name="choose_app">Vincola applicazione</string>
+    <string name="icon_picker_type">Seleziona il tipo di icona:</string>
+    <string name="icon_default">Predefinita</string>
+    <string name="icon_custom">Personalizzata</string>
     <string name="unknown">Sconosciuto</string>
 
     <string name="stop_to_remove">Per favore disattiva la funzione prima di rimuovere qualsiasi applicazione dalla lista</string>
-    
+
+    <string name="ext_note1">Nota 1</string>
+    <string name="ext_note2">Nota 2</string>
+    <string name="ext_note3">Nota 3</string>
+    <string name="ext_note4">Nota 4</string>
+    <string name="extensions">Estensioni</string>
+
 </resources>
