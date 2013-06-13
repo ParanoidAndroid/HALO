@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">HALO)))</string>
+    <string name="app_name">HALO Custom applications</string>
     <string name="tap_to_launch">Tap to launch the application</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
