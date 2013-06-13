@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">HALO Пользовательские приложения</string>
+    <string name="app_name">Пользовательские приложения</string>
     <string name="tap_to_launch">Нажмите, чтобы запустить приложение</string>
     <string name="start">Старт</string>
     <string name="stop">Стоп</string>
@@ -14,6 +14,7 @@
     
     <string name="stop_to_remove">Пожалуйста, остановите сервис, прежде чем удалите приложения из списка.</string>
     
+	<string name="notes">Заметки</string>
     <string name="ext_note1">Заметка 1</string>
     <string name="ext_note2">Заметка 2</string>
     <string name="ext_note3">Заметка 3</string>
