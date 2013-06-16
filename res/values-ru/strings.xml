@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HALO)))</string>
+    <string name="tap_to_launch">Нажать для запуска приложения</string>
+    <string name="start">Старт</string>
+    <string name="stop">Стоп</string>
+    <string name="add">Закрепить</string>
+    <string name="choose_app">Выбрать приложение</string>
+    <string name="icon_picker_type">Тип иконки:</string>
+    <string name="icon_default">По умолчанию</string>
+    <string name="icon_custom">Задать</string>
+    <string name="unknown">Неизвестно</string>
+
+    <string name="stop_to_remove">Пожалуйста, преостановите сервис, прежде чем удалить приложение из списка</string>
+    
+    <string name="ext_note1">Заметка 1</string>
+    <string name="ext_note2">Заметка 2</string>
+    <string name="ext_note3">Заметка 3</string>
+    <string name="ext_note4">Заметка 4</string>
+    <string name="extensions">Расширения</string>
+    
+</resources>
