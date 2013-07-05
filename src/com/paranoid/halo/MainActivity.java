@@ -75,14 +75,7 @@ public class MainActivity extends PreferenceActivity {
         super.onCreate(savedInstanceState);
 
         mContext = this;
-
-        ActionBar bar = getActionBar();
-        BitmapDrawable background = new BitmapDrawable(BitmapFactory
-                .decodeResource(getResources(), R.drawable.ab_background));
-        background.setTileModeX(Shader.TileMode.CLAMP);
-        bar.setBackgroundDrawable(background);
-        bar.setDisplayShowTitleEnabled(false);
-
+        
         mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 

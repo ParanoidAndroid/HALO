@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="icon_types">
+        <item>@string/icon_default</item>
+        <item>@string/icon_custom</item>
+    </string-array>
+</resources>
