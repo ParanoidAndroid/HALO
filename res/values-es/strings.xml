@@ -14,6 +14,7 @@
 
     <string name="stop_to_remove">Por favor detenga el servicio antes de remover cualquier aplicación</string>
     
+    <string name="ext_notes">Notas</string>
     <string name="ext_note1">Nota 1</string>
     <string name="ext_note2">Nota 2</string>
     <string name="ext_note3">Nota 3</string>
