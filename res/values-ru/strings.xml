@@ -14,7 +14,8 @@
 
     <string name="stop_to_remove">Пожалуйста, преостановите сервис, прежде чем удалить приложение из списка</string>
     
-    <string name="ext_note1">Заметка 1</string>
+    <string name="ext_notes">Заметки</string>
+	<string name="ext_note1">Заметка 1</string>
     <string name="ext_note2">Заметка 2</string>
     <string name="ext_note3">Заметка 3</string>
     <string name="ext_note4">Заметка 4</string>
