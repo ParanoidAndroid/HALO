@@ -98,8 +98,10 @@ public class MainActivity extends PreferenceActivity {
         setPreferenceScreen(getPreferenceManager().createPreferenceScreen(this));
         mRoot = getPreferenceScreen();
         loadPreferenceItems();
+        helperDialogs();        
+
     }
-    
+
 	@Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem item = menu.getItem(1);
@@ -274,6 +276,56 @@ public class MainActivity extends PreferenceActivity {
             app.setIcon(Utils.getApplicationIconDrawable(packageName, mContext));
             app.setOnPreferenceClickListener(mOnItemClickListener);
             mRoot.addPreference(app);
+        }
+    }
+    
+    public void helperDialogs(){
+    	// On first run: Show a Dialog to explain the user the utility of Halo))).
+        // We will store the firstrun as a SharedPreference.
+
+        boolean firstrun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("firstrun", true);
+
+        if (firstrun) {
+        	// Create HelperActivity as a dialog
+        	Intent intent = new Intent(this, HelperActivity.class);
+	        this.startActivity(intent);
+
+        	// Save a shared Preference explaining to the app that it has been run previously
+        	getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+        		.edit()
+        		.putBoolean("firstrun", false)
+        		.commit();        	
+        }
+        else{
+        	//Try to check if the device has PA installed.
+    		
+    		String hasPa = Utils.getProp("ro.pa");
+    		
+    		if(hasPa.equals("true")){
+    			// You're clever dude! No advice must be shown!
+            }
+    		else{
+    			AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+    			builder.setMessage(R.string.nopa_content)
+    			       .setTitle(R.string.nopa_title)
+    			       .setPositiveButton(R.string.nopa_download, new DialogInterface.OnClickListener() {
+    			           public void onClick(DialogInterface dialog, int id) {
+    			        	   String url = "http://goo.im/devs/paranoidandroid/roms";
+    			        	   Intent i = new Intent(Intent.ACTION_VIEW);
+    			        	   i.setData(Uri.parse(url));
+    			        	   startActivity(i);
+    			           }
+    			       })   
+    			       .setNegativeButton(R.string.nopa_ok, new DialogInterface.OnClickListener() {
+    			           public void onClick(DialogInterface dialog, int id) {
+    			        	   dialog.dismiss();
+    			           }
+    			       });
+
+    			AlertDialog nopa_dialog = builder.create();
+    			nopa_dialog.show();
+    		}
         }
     }
 

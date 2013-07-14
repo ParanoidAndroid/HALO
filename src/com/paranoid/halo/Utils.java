@@ -17,7 +17,10 @@ import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -182,5 +185,25 @@ public class Utils {
         } catch(NullPointerException npe) {
             // Skip this application
         }
+    }
+    
+    // Check if the current user has installed Paranoid Android ROM
+    // Using Yamil's method of Paranoid OTA
+    
+    public static String getProp(String prop) {
+        try {
+            Process process = Runtime.getRuntime().exec("getprop " + prop);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
+                    process.getInputStream()));
+            StringBuilder log = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                log.append(line);
+            }
+            return log.toString();
+        } catch (IOException e) {
+            // Runtime error
+        }
+        return null;
     }
 }
