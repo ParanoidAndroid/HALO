@@ -27,7 +27,7 @@
 	<string name="helper_static_5">"Finally, click on the Start button and you’re done. If you want to disable HALO))), Click on the pause button."</string>
 		
 	<string name="nopa_title">Is ParanoidAndroid installed?</string>
-	<string name="nopa_content">"Halo))) is specially designed to work on ParanoidAndroid ROMs. You might not be able to experience the full potential & features of Halo."</string>
+	<string name="nopa_content">"Halo))) is specially designed to work on ParanoidAndroid ROMs. You might not be able to experience the full potential &amp; features of Halo."</string>
 	<string name="nopa_ok">"OK"</string>
 	<string name="nopa_download">Install PA</string>
 	
