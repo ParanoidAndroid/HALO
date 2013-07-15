@@ -14,4 +14,10 @@
 
     <string name="stop_to_remove">Listeden uygulama çıkartmak için lütfen önce servisi durdurun.</string>
     
+    <string name="ext_notes">Notlar</string>
+    <string name="ext_note1">1. Not</string>
+    <string name="ext_note2">2. Not</string>
+    <string name="ext_note3">3. Not</string>
+    <string name="ext_note4">4. Not</string>
+    <string name="extensions">Eklentiler</string> 
 </resources>
