@@ -20,4 +20,14 @@
     <string name="ext_note4">注解 4</string>
     <string name="extensions">插件</string>
 
+    <string name="helper_static_2">"使用 HALO)))"</string>
+	<string name="helper_static_3">"使用 HALO))) 很容易，只需要按操作列上的加入按鈕，它有可能在螢幕的上面或下面；"</string>
+	<string name="helper_static_4">"然後選擇你希望加入到 Halo 的應用程式，"</string>
+	<string name="helper_static_5">"最後按啟動開始使用 HALO)))。如果你想停用 HALO)))，請按停止。"</string>
+		
+	<string name="nopa_title">ParanoidAndroid 是否已經安裝？</string>
+	<string name="nopa_content">"Halo))) 特别為 ParanoidAndroid ROMs 而設計，你可能無法體驗 Halo 的完整功能。"</string>
+	<string name="nopa_ok">"確定"</string>
+	<string name="nopa_download">安裝 PA</string>
+
 </resources>
