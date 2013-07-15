@@ -20,5 +20,15 @@
     <string name="ext_note3">Nota 3</string>
     <string name="ext_note4">Nota 4</string>
     <string name="extensions">Estensioni</string>
+    
+    <string name="helper_static_2">"Usare HALO)))"</string>
+    <string name="helper_static_3">"Capire HALO))) è molto semplice. Tocca il tasto Vincola nella Barra d\'Azione. Tieni presente che il tasto potrebbe essere nella parte superiore o inferiore dello schermo."</string>
+    <string name="helper_static_4">"Ora, Clicca l\'applicazione che vorresti vincolare in HALO))) dalla lista."</string>
+    <string name="helper_static_5">"Infine, Clicca sul tasto start ed è fatta. Se vuoi disabilitare HALO))) clicca il tasto pausa."</string>
+
+    <string name="nopa_title">ParanoidAndroid è installata?</string>
+    <string name="nopa_content">"HALO))) è sviluppato per lavorare in primis su ROMs ParanoidAndroidis. Potresti non essere in grado di provarne le piene potenzialità e funzioni."</string>
+    <string name="nopa_ok">"OK"</string>
+    <string name="nopa_download">Installa PA</string>
 
 </resources>
