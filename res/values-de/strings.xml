@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HALO)))</string>
+    <string name="tap_to_launch">Tippen zum Starten der Applikation</string>
+    <string name="start">Start</string>
+    <string name="stop">Stopp</string>
+    <string name="add">Anheften</string>
+    <string name="choose_app">Applikation anheften</string>
+    <string name="unknown">Unbekannt</string>
+
+    <string name="stop_to_remove">Bitte beende den Dienst bevor du eine Applikation von der Liste entfernst</string>
+    
+</resources>
