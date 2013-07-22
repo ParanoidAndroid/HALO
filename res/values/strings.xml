@@ -15,4 +15,21 @@
 
     <string name="stop_to_remove">Please stop the service before removing any application from the list</string>
     
+    <string name="ext_notes">Notes</string>
+    <string name="ext_note1">Note 1</string>
+    <string name="ext_note2">Note 2</string>
+    <string name="ext_note3">Note 3</string>
+    <string name="ext_note4">Note 4</string>
+    <string name="extensions">Extensions</string>
+
+    <string name="helper_static_2">"Using HALO)))"</string>
+    <string name="helper_static_3">"Understanding HALO))) is very simple. Just tap on the Pin button in your Action Bar. Note that the button may be on the top or the bottom of your screen."</string>
+    <string name="helper_static_4">"Next, Click the desired application you'd like to pin on Halo from the list."</string>
+    <string name="helper_static_5">"Finally, click on the Start button and you’re done. If you want to disable HALO))), Click on the pause button."</string>
+	
+    <string name="nopa_title">Is ParanoidAndroid installed?</string>
+    <string name="nopa_content">"Halo))) is specially designed to work on ParanoidAndroid ROMs. You might not be able to experience the full potential and features of Halo."</string>
+    <string name="nopa_ok">"OK"</string>
+    <string name="nopa_download">Install PA</string>
+    
 </resources>

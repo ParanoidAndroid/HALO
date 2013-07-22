@@ -20,7 +20,8 @@
         <activity
             android:name="com.paranoid.halo.MainActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:uiOptions="splitActionBarWhenNarrow" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,6 +35,15 @@
             </intent-filter>
         </receiver>
 
+        <activity
+            android:name="com.paranoid.halo.ExtensionsActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.paranoid.halo.HelperActivity"
+            android:label="@string/helper_static_2"
+            android:theme="@android:style/Theme.Holo.Light.Dialog" >
+        </activity>
     </application>
 
 </manifest>

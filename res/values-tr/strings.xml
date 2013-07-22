@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HALO)))</string>
+    <string name="tap_to_launch">Uygulamayı başlatmak için dokunun</string>
+    <string name="start">Başlat</string>
+    <string name="stop">Durdur</string>
+    <string name="add">Ekle</string>
+    <string name="choose_app">Uygulama seç</string>
+    <string name="icon_picker_type">Simge tarzı:</string>
+    <string name="icon_default">Varsayılan</string>
+    <string name="icon_custom">Kişisel</string>
+    <string name="unknown">Bilinmeyen</string>
+
+    <string name="stop_to_remove">Listeden uygulama çıkartmak için lütfen önce servisi durdurun.</string>
+    
+    <string name="ext_notes">Notlar</string>
+    <string name="ext_note1">1. Not</string>
+    <string name="ext_note2">2. Not</string>
+    <string name="ext_note3">3. Not</string>
+    <string name="ext_note4">4. Not</string>
+    <string name="extensions">Eklentiler</string> 
+</resources>

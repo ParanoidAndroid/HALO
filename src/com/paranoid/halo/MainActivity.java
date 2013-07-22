@@ -23,14 +23,12 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +39,7 @@ public class MainActivity extends PreferenceActivity implements DialogView.Dialo
     
     private static final int MENU_ADD = 0;
     private static final int MENU_ACTION = 1;
+    private static final int MENU_EXTENSIONS = 2;
     
     private NotificationManager mNotificationManager;
     private Context mContext;
@@ -96,6 +95,8 @@ public class MainActivity extends PreferenceActivity implements DialogView.Dialo
         setPreferenceScreen(getPreferenceManager().createPreferenceScreen(this));
         mRoot = getPreferenceScreen();
         loadPreferenceItems();
+        helperDialogs();        
+
     }
     
     @Override
@@ -117,6 +118,8 @@ public class MainActivity extends PreferenceActivity implements DialogView.Dialo
         menu.add(Menu.NONE, MENU_ACTION, 0, R.string.start)
             .setIcon(R.drawable.ic_start)
             .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+        menu.add(Menu.NONE, MENU_EXTENSIONS, 0, R.string.extensions)
+            .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
         return true;
     }
 
@@ -146,6 +149,10 @@ public class MainActivity extends PreferenceActivity implements DialogView.Dialo
                 }
                 Utils.saveStatus(mShowing, mContext);
                 invalidateOptionsMenu();
+                break;
+            case MENU_EXTENSIONS:
+                Intent intent = new Intent(this, ExtensionsActivity.class);
+    	        this.startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -321,6 +328,56 @@ public class MainActivity extends PreferenceActivity implements DialogView.Dialo
                 pref.setSummary(key);
             }
             mRoot.addPreference(pref);
+        }
+    }
+    
+    public void helperDialogs(){
+    	// On first run: Show a Dialog to explain the user the utility of Halo))).
+        // We will store the firstrun as a SharedPreference.
+
+        boolean firstrun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("firstrun", true);
+
+        if (firstrun) {
+        	// Create HelperActivity as a dialog
+        	Intent intent = new Intent(this, HelperActivity.class);
+	        this.startActivity(intent);
+
+        	// Save a shared Preference explaining to the app that it has been run previously
+        	getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+        		.edit()
+        		.putBoolean("firstrun", false)
+        		.commit();        	
+        }
+        else{
+        	//Try to check if the device has PA installed.
+    		
+    		String hasPa = Utils.getProp("ro.pa");
+    		
+    		if(hasPa.equals("true")){
+    			// You're clever dude! No advice must be shown!
+            }
+    		else{
+    			AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+    			builder.setMessage(R.string.nopa_content)
+    			       .setTitle(R.string.nopa_title)
+    			       .setPositiveButton(R.string.nopa_download, new DialogInterface.OnClickListener() {
+    			           public void onClick(DialogInterface dialog, int id) {
+    			        	   String url = "http://goo.im/devs/paranoidandroid/roms";
+    			        	   Intent i = new Intent(Intent.ACTION_VIEW);
+    			        	   i.setData(Uri.parse(url));
+    			        	   startActivity(i);
+    			           }
+    			       })   
+    			       .setNegativeButton(R.string.nopa_ok, new DialogInterface.OnClickListener() {
+    			           public void onClick(DialogInterface dialog, int id) {
+    			        	   dialog.dismiss();
+    			           }
+    			       });
+
+    			AlertDialog nopa_dialog = builder.create();
+    			nopa_dialog.show();
+    		}
         }
     }
 }
