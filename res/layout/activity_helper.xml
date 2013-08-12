@@ -1,9 +1,10 @@
- <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/scrollView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+ <ScrollView 
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
-        <LinearLayout
+ <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
@@ -21,7 +22,8 @@
             android:id="@+id/imageView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/helper_1" />
+            android:src="@drawable/helper_1" 
+            android:contentDescription="@string/description_1"/>
 
         <TextView
             android:id="@+id/textView7"
@@ -35,7 +37,8 @@
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/helper_2" />
+            android:src="@drawable/helper_2" 
+            android:contentDescription="@string/description_2"/>
 
         <TextView
             android:id="@+id/textView8"
@@ -49,8 +52,8 @@
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/helper_3" />
+            android:src="@drawable/helper_3"
+            android:contentDescription="@string/description_3"/>
 
 	    </LinearLayout>
-
 </ScrollView>
