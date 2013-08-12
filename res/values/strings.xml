@@ -30,5 +30,8 @@
     <string name="nopa_content">"Halo))) is specially designed to work on ParanoidAndroid ROMs. You might not be able to experience the full potential and features of Halo."</string>
     <string name="nopa_ok">"OK"</string>
     <string name="nopa_download">Install PA</string>
+    <string name="description_1">Helper 1</string>
+    <string name="description_2">Helper 2</string>
+    <string name="description_3">Helper 3</string>
 
 </resources>
