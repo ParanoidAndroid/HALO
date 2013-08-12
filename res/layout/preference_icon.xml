@@ -14,7 +14,8 @@
      limitations under the License.
 -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ <LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+android:id/widget_frame"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -22,16 +23,17 @@
     android:gravity="center_vertical"
     android:paddingEnd="?android:attr/scrollbarSize">
     
-    <ImageView
+ <ImageView
         android:id="@+id/icon"
         android:layout_width="40dip"
         android:layout_height="40dip"
         android:layout_marginStart="6dip"
         android:layout_marginEnd="6dip"
-        android:scaleType="fitCenter" />
+        android:scaleType="fitCenter" 
+        android:contentDescription="@string/preferenceicon_imageview"/>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
+ <RelativeLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dip"
         android:layout_marginEnd="6dip"
@@ -39,13 +41,13 @@
         android:layout_marginBottom="6dip"
         android:layout_weight="1">
 
-        <TextView android:id="@+android:id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:ellipsize="end" />
+ <TextView 
+        android:id="@+android:id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:ellipsize="end" />
 
     </RelativeLayout>
-
 </LinearLayout>
