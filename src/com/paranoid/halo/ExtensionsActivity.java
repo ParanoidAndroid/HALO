@@ -53,10 +53,14 @@ public class ExtensionsActivity extends PreferenceActivity implements OnSharedPr
     }
     
 	public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences, final String key){
+		@SuppressWarnings("deprecation")
 		Preference pref_note1 = findPreference("ext_note1");
-	    Preference pref_note2 = findPreference("ext_note2");
-	    Preference pref_note3 = findPreference("ext_note3");
-	    Preference pref_note4 = findPreference("ext_note4");
+	    @SuppressWarnings("deprecation")
+		Preference pref_note2 = findPreference("ext_note2");
+	    @SuppressWarnings("deprecation")
+		Preference pref_note3 = findPreference("ext_note3");
+	    @SuppressWarnings("deprecation")
+		Preference pref_note4 = findPreference("ext_note4");
 	    
 		SharedPreferences ext_prefs = PreferenceManager.getDefaultSharedPreferences(this);
 	    
