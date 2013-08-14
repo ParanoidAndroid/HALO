@@ -52,21 +52,22 @@ public class ExtensionsActivity extends PreferenceActivity implements OnSharedPr
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
     
+	@SuppressWarnings("deprecation")
 	public void onSharedPreferenceChanged(final SharedPreferences sharedPreferences, final String key){
 		Preference pref_note1 = findPreference("ext_note1");
 	    Preference pref_note2 = findPreference("ext_note2");
 	    Preference pref_note3 = findPreference("ext_note3");
 	    Preference pref_note4 = findPreference("ext_note4");
-	    
-		SharedPreferences ext_prefs = PreferenceManager.getDefaultSharedPreferences(this);
-	    
+	
+		SharedPreferences ext_prefs = PreferenceManager.getDefaultSharedPreferences(this);	  
+		
 		String note1 = ext_prefs.getString("ext_note1", null);
 		String note2 = ext_prefs.getString("ext_note2", null);
 		String note3 = ext_prefs.getString("ext_note3", null);
 		String note4 = ext_prefs.getString("ext_note4", null);		
 		
 		NotificationManager ext_notification_manager =
-				(NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		(NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		
 		Intent intent = new Intent(this, ExtensionsActivity.class);
 	    PendingIntent ext_intent = PendingIntent.getActivity(this, 0, intent, 0);
@@ -85,12 +86,12 @@ public class ExtensionsActivity extends PreferenceActivity implements OnSharedPr
 				ext_notification_manager.notify(1, notif);
 				
 				pref_note1.setSummary(note1);
-    	}
+    }
     	
     	if(note1.length() == 0){
 			ext_notification_manager.cancel(1);
 			pref_note1.setSummary(note1);
-		}
+	}
     	
     	if (key.equals(KEY_EXT_NOTE_2)) {
     		NotificationCompat.Builder ext_builder =
@@ -104,14 +105,13 @@ public class ExtensionsActivity extends PreferenceActivity implements OnSharedPr
 		            notif.priority = Notification.PRIORITY_MIN;
 		            notif.tickerText = note2;
 				ext_notification_manager.notify(2, notif);
-				
 				pref_note2.setSummary(note2);
-    	}
+    }
     	
     	if(note1.length() == 0){
 			ext_notification_manager.cancel(2);
 			pref_note2.setSummary(note2);
-		}
+	}
     	
     	if (key.equals(KEY_EXT_NOTE_3)) {
     		NotificationCompat.Builder ext_builder =
@@ -124,15 +124,14 @@ public class ExtensionsActivity extends PreferenceActivity implements OnSharedPr
 		            notif.flags |= Notification.FLAG_ONGOING_EVENT;
 		            notif.priority = Notification.PRIORITY_MIN;
 		            notif.tickerText = note3;
-				ext_notification_manager.notify(3, notif);
-				
+				ext_notification_manager.notify(3, notif);				
 				pref_note3.setSummary(note3);
-    	}
+    }
     	
     	if(note1.length() == 0){
 			ext_notification_manager.cancel(3);
 			pref_note3.setSummary(note3);
-		}
+	}
     	
     	if (key.equals(KEY_EXT_NOTE_4)) {
     		NotificationCompat.Builder ext_builder =
@@ -153,8 +152,6 @@ public class ExtensionsActivity extends PreferenceActivity implements OnSharedPr
     	if(note1.length() == 0){
 			ext_notification_manager.cancel(4);
 			pref_note4.setSummary(note4);
-		}
-    	
-    }
-    
+		}    	
+    }   
 }
