@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HALO)))</string>
+    <string name="tap_to_launch">Näpäytä käynnistääksesi sovelluksen</string>
+    <string name="start">Aloita</string>
+    <string name="stop">Lopeta</string>
+    <string name="add">Kiinnitä</string>
+    <string name="choose_app">Kiinnitä sovellus</string>
+    <string name="icon_picker_type">Valitse Ikonin tyyppi:</string>
+    <string name="icon_default">Oletus</string>
+    <string name="icon_custom">Muokattu</string>
+    <string name="unknown">Tuntematon</string>
+
+    <string name="stop_to_remove">Ole hyvä ja lopeta palvelu ennen kuin poistat sovelluksen listasta, koska sen jättämättä tekeminen aiheuttaa pakkosulkeutumisia, pontentiaalisesti pakottaen sinut asentamaan ROMisi uudestaan.</string>
+
+    <string name="ext_notes">Muistiot</string>
+    <string name="ext_note1">Muistio 1</string>
+    <string name="ext_note2">Muistio 2</string>
+    <string name="ext_note3">Muistio 3</string>
+    <string name="ext_note4">Muistio 4</string>
+    <string name="extensions">Lisäosat</string>
+
+    <string name="helper_static_2">HALO))):n käyttäminen</string>
+    <string name="helper_static_3">HALO))):n ymmärtäminen on erittäin helppoa. Näpäytä vain kiinnitys-nappia tehtäväpalkillasi. Huomioi että se voi olla näyttösi ylä- tai alakulmassa.</string>
+    <string name="helper_static_4">Seuraavaksi, Valitse sovellus jonka haluaisit kiinnittää Haloon listasta.</string>
+    <string name="helper_static_5">Lopuksi, klikkaa Aloitus-nappia ja olet valmis. Jos haluat ottaa HALO))):n pois käytöstä, klikkaa Lopeta-nappia.</string>
+	
+    <string name="nopa_title">Onko ParanoidAndroid asennettu?</string>
+    <string name="nopa_content">Halo))) On suunniteltu toimimaan ParanoidAndroid ROMeilla. Et ehkä voi käyttää HALO:n täyttä potentiaalia ja kaikkia toimintoja.</string>
+    <string name="nopa_ok">Selvä</string>
+    <string name="nopa_download">Asenna ParanoidAndroid</string>
+    
+    <string name="description_1">Avustaja 1</string>
+    <string name="description_2">Avustaja 2</string>
+    <string name="description_3">Avustaja 3</string>
+    <string name="preferenceicon_imageview">preferenceiconImageView</string>
+
+</resources>

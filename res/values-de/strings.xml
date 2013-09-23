@@ -30,4 +30,10 @@
     <string name="nopa_content">"Halo))) ist speziell für ParanoidAndroid ROMs entwickelt worden. Sie werden unter Umständen nicht dazu in der Lage sein, alle Funktionen dieser App zu nutzen."</string>
     <string name="nopa_ok">"OK"</string>
     <string name="nopa_download">PA Installieren</string>
+	
+	<string name="description_1">Assistent 1</string>
+    <string name="description_2">Assistent 2</string>
+    <string name="description_3">Assistent 3</string>
+    <string name="preferenceicon_imageview">preferenceiconImageView</string>
+	
 </resources>
