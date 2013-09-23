@@ -22,7 +22,7 @@
     <string name="extensions">Lisäosat</string>
 
     <string name="helper_static_2">HALO))):n käyttäminen</string>
-    <string name="helper_static_3" HALO))):n ymmärtäminen on erittäin helppoa. Näpäytä vain kiinnitys-nappia tehtäväpalkillasi. Huomioi että se voi olla näyttösi ylä- tai alakulmassa.</string>
+    <string name="helper_static_3">HALO))):n ymmärtäminen on erittäin helppoa. Näpäytä vain kiinnitys-nappia tehtäväpalkillasi. Huomioi että se voi olla näyttösi ylä- tai alakulmassa.</string>
     <string name="helper_static_4">Seuraavaksi, Valitse sovellus jonka haluaisit kiinnittää Haloon listasta.</string>
     <string name="helper_static_5">Lopuksi, klikkaa Aloitus-nappia ja olet valmis. Jos haluat ottaa HALO))):n pois käytöstä, klikkaa Lopeta-nappia.</string>
 	
