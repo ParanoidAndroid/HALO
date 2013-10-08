@@ -37,8 +37,8 @@ public class ApplicationsDialog {
 
     public PackageManager mPackageManager;
     public List<ResolveInfo> mInstalledApps;
-    
-    public AppAdapter createAppAdapter(Context context, List<ResolveInfo> installedAppsInfo){
+
+    public AppAdapter createAppAdapter(Context context, List<ResolveInfo> installedAppsInfo) {
         mPackageManager = context.getPackageManager();
         return new AppAdapter(context, installedAppsInfo);
     }
@@ -57,9 +57,9 @@ public class ApplicationsDialog {
     public class AppAdapter extends BaseAdapter {
         protected List<ResolveInfo> mInstalledAppInfo;
         protected List<AppItem> mInstalledApps = new LinkedList<AppItem>();
-        
+
         private Context mContext;
-        
+
         public AppAdapter(Context context, List<ResolveInfo> installedAppsInfo) {
             mInstalledAppInfo = installedAppsInfo;
             mContext = context;
@@ -121,7 +121,8 @@ public class ApplicationsDialog {
             if (convertView != null) {
                 holder = (ViewHolder) convertView.getTag();
             } else {
-                final LayoutInflater layoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                final LayoutInflater layoutInflater =
+                        (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 convertView = layoutInflater.inflate(R.layout.preference_icon, null, false);
                 holder = new ViewHolder();
                 convertView.setTag(holder);
