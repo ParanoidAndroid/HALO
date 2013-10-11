@@ -18,6 +18,7 @@
  */
 package com.paranoid.halo;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -70,6 +71,7 @@ public class MainActivity extends PreferenceActivity {
     private static final int MENU_ADD = 0;
     private static final int MENU_ACTION = 1;
     private static final int MENU_NOTES = 2;
+    private static final int MENU_EXIT = 3;
 
     private NotificationManager mNotificationManager;
     private Context mContext;
@@ -159,6 +161,8 @@ public class MainActivity extends PreferenceActivity {
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
         menu.add(Menu.NONE, MENU_NOTES, 0, R.string.notes)
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+        menu.add(Menu.NONE, MENU_EXIT, 0, "Exit")
+        .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
         return true;
     }
 
@@ -259,6 +263,10 @@ public class MainActivity extends PreferenceActivity {
                 Intent intent = new Intent(this, NotesActivity.class);
                 this.startActivity(intent);
                 break;
+                
+            case MENU_EXIT:
+            	finish();
+            	break;
         }
         if(mShowcaseView != null) {
             mShowcaseView.hide();
@@ -266,7 +274,8 @@ public class MainActivity extends PreferenceActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
+    @SuppressLint("DefaultLocale")
+	@Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode != Activity.RESULT_OK) return;
         switch (requestCode) {
