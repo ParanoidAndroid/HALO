@@ -55,7 +55,8 @@ public class NotesActivity
         prefs.registerOnSharedPreferenceChangeListener(this);
     }
 
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+    @SuppressWarnings("deprecation")
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Notes.setNoteByKey(this, key);
         setPreferenceSummary(key,
                 (EditTextPreference) getPreferenceManager().findPreference(key));
