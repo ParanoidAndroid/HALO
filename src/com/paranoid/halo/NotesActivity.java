@@ -25,6 +25,8 @@ import android.preference.EditTextPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
+import android.support.v4.app.NavUtils;
+import android.view.MenuItem;
 
 import com.paranoid.halo.utils.Notes;
 
@@ -39,6 +41,8 @@ public class NotesActivity
         super.onCreate(savedInstanceState);
         PreferenceScreen preferenceScreen = getPreferenceManager().createPreferenceScreen(this);
         setPreferenceScreen(preferenceScreen);
+        
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         for(int i = 0; i<NOTES.length; i++) {
             EditTextPreference pref = new EditTextPreference(this);
@@ -55,7 +59,8 @@ public class NotesActivity
         prefs.registerOnSharedPreferenceChangeListener(this);
     }
 
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+    @SuppressWarnings("deprecation")
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         Notes.setNoteByKey(this, key);
         setPreferenceSummary(key,
                 (EditTextPreference) getPreferenceManager().findPreference(key));
@@ -66,4 +71,16 @@ public class NotesActivity
         String note = prefs.getString(key, null);
         preference.setSummary(note == null || note.isEmpty() ? getString(R.string.empty) : note);
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        // Respond to the action bar's Up/Home button
+        case android.R.id.home:
+            NavUtils.navigateUpFromSameTask(this);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }    
 }
