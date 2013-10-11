@@ -68,7 +68,8 @@ public class ShowcaseView extends RelativeLayout implements View.OnClickListener
     private String mTitleText, mSubText;
     private int detailTextColor = -1;
     private int titleTextColor = -1;
-    private DynamicLayout mDynamicTitleLayout;
+    @SuppressWarnings("unused")
+	private DynamicLayout mDynamicTitleLayout;
     private DynamicLayout mDynamicDetailLayout;
     private float[] mBestTextPosition;
     private boolean mAlteredText = false;
@@ -198,7 +199,8 @@ public class ShowcaseView extends RelativeLayout implements View.OnClickListener
 
     public void setShowcaseItem(final int itemType, final int actionItemId, final Activity activity) {
         post(new Runnable() {
-            @Override
+            @SuppressWarnings("rawtypes")
+			@Override
             public void run() {
                 View homeButton = activity.findViewById(android.R.id.home);
                 if (homeButton == null) {
@@ -247,7 +249,7 @@ public class ShowcaseView extends RelativeLayout implements View.OnClickListener
 
     }
 
-    private void showcaseActionItem(ViewParent p, Class absAbv, int itemType, int actionItemId) {
+    private void showcaseActionItem(ViewParent p, @SuppressWarnings("rawtypes") Class absAbv, int itemType, int actionItemId) {
         try {
             Field mAmpField = absAbv.getDeclaredField("mActionMenuPresenter");
             mAmpField.setAccessible(true);
@@ -288,7 +290,7 @@ public class ShowcaseView extends RelativeLayout implements View.OnClickListener
         }
     }
 
-    private void showcaseSpinner(ViewParent p, Class abv) {
+    private void showcaseSpinner(ViewParent p, @SuppressWarnings("rawtypes") Class abv) {
         try {
             Field mSpinnerField = abv.getDeclaredField("mSpinner");
             mSpinnerField.setAccessible(true);
@@ -303,7 +305,7 @@ public class ShowcaseView extends RelativeLayout implements View.OnClickListener
         }
     }
 
-    private void showcaseTitle(ViewParent p, Class abv) {
+    private void showcaseTitle(ViewParent p, @SuppressWarnings("rawtypes") Class abv) {
         try {
             Field mTitleViewField = abv.getDeclaredField("mTitleView");
             mTitleViewField.setAccessible(true);
