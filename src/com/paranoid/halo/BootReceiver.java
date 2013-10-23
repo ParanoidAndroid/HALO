@@ -23,18 +23,23 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import com.paranoid.halo.utils.Notes;
+import com.paranoid.halo.utils.Utils;
+
 public class BootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (Utils.getStatus(context)) {
             String[] packages = Utils.loadArray(context);
-            if(packages != null) {
+            if (packages != null) {
                 NotificationManager notificationManager =
                         (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                for(String packageName : packages){
+                for (String packageName : packages) {
                     Utils.createNotification(context, notificationManager, packageName);
                 }
             }
         }
+
+        Notes.setAllNotes(context);
     }
 }

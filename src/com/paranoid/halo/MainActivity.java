@@ -18,52 +18,59 @@
  */
 package com.paranoid.halo;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.NotificationManager;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
-import com.paranoid.halo.ApplicationsDialog.AppAdapter;
-import com.paranoid.halo.ApplicationsDialog.AppItem;
-
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.NotificationManager;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.ResolveInfo;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.paranoid.halo.ApplicationsDialog.AppAdapter;
+import com.paranoid.halo.ApplicationsDialog.AppItem;
+import com.paranoid.halo.showcase.ShowcaseUtils;
+import com.paranoid.halo.showcase.ShowcaseView;
+import com.paranoid.halo.utils.Utils;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends PreferenceActivity {
 
+    private static final String FIRST_RUN = "app_first_run";
+
     private static final int CUSTOM_USER_ICON = 0;
-    
+
     private static final int MENU_ADD = 0;
     private static final int MENU_ACTION = 1;
-    private static final int MENU_EXTENSIONS = 2;
-    
+    private static final int MENU_NOTES = 2;
+
     private NotificationManager mNotificationManager;
     private Context mContext;
     private boolean mShowing;
@@ -72,20 +79,22 @@ public class MainActivity extends PreferenceActivity {
     private AppAdapter mAppAdapter;
     private Preference mPreference;
     private File mImageTmp;
-    private OnPreferenceClickListener mOnItemClickListener = new OnPreferenceClickListener(){
-            @Override
-            public boolean onPreferenceClick(Preference arg0) {
-                if(mShowing){
-                    Toast.makeText(mContext, R.string.stop_to_remove, Toast.LENGTH_SHORT).show();
-                } else {
-                    mRoot.removePreference(arg0);
-                    Utils.removeCustomApplicationIcon(arg0.getSummary().toString(), mContext);
-                    savePreferenceItems(false);
-                    invalidateOptionsMenu();
-                }
-                return false;
+    private OnPreferenceClickListener mOnItemClickListener = new OnPreferenceClickListener() {
+        @Override
+        public boolean onPreferenceClick(Preference arg0) {
+            if (mShowing) {
+                Toast.makeText(mContext, R.string.stop_to_remove, Toast.LENGTH_SHORT).show();
+            } else {
+                mRoot.removePreference(arg0);
+                Utils.removeCustomApplicationIcon(arg0.getSummary().toString(), mContext);
+                savePreferenceItems(false);
+                invalidateOptionsMenu();
             }
-        };
+            return false;
+        }
+    };
+
+    private ShowcaseView mShowcaseView;
 
     @SuppressWarnings("deprecation")
     @Override
@@ -116,11 +125,20 @@ public class MainActivity extends PreferenceActivity {
         setPreferenceScreen(getPreferenceManager().createPreferenceScreen(this));
         mRoot = getPreferenceScreen();
         loadPreferenceItems();
-        helperDialogs();        
+        showFirstRunDialog();
 
+        invalidateOptionsMenu();
+
+        if (ShowcaseUtils.needsShowcase(this, ShowcaseUtils.SHOWCASE_PIN_APPLICATION)) {
+            mShowcaseView = ShowcaseView.insertShowcaseViewWithType(ShowcaseView.ITEM_ACTION_ITEM,
+                    MENU_ADD, this, R.string.pin_applications,
+                            R.string.pin_applications_summary, null);
+            mShowcaseView.setShowcaseIndicatorScale(0.5f);
+            ShowcaseUtils.setShowcased(this, ShowcaseUtils.SHOWCASE_PIN_APPLICATION);
+        }
     }
 
-	@Override
+    @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem item = menu.getItem(1);
         item.setVisible(mRoot.getPreferenceCount() > 0);
@@ -134,13 +152,13 @@ public class MainActivity extends PreferenceActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(Menu.NONE, MENU_ADD, 0, R.string.add)
-            .setIcon(R.drawable.ic_add)
-            .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+                .setIcon(R.drawable.ic_add)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
         menu.add(Menu.NONE, MENU_ACTION, 0, R.string.start)
-            .setIcon(R.drawable.ic_start)
-            .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-        menu.add(Menu.NONE, MENU_EXTENSIONS, 0, R.string.extensions)
-        	.setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+                .setIcon(R.drawable.ic_start)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+        menu.add(Menu.NONE, MENU_NOTES, 0, R.string.notes)
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
         return true;
     }
 
@@ -159,12 +177,12 @@ public class MainActivity extends PreferenceActivity {
                 list.setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> arg0, View arg1,
-                            int arg2, long arg3) {
+                                            int arg2, long arg3) {
                         final AppItem info = (AppItem) arg0.getItemAtPosition(arg2);
                         final String packageName = info.packageName;
-                        for(int i = 0; i<mRoot.getPreferenceCount(); i++){
-                            if(mRoot.getPreference(i).getSummary()
-                                    .equals(packageName)){
+                        for (int i = 0; i < mRoot.getPreferenceCount(); i++) {
+                            if (mRoot.getPreference(i).getSummary()
+                                    .equals(packageName)) {
                                 return;
                             }
                         }
@@ -180,7 +198,7 @@ public class MainActivity extends PreferenceActivity {
                                         mRoot.addPreference(mPreference);
                                         invalidateOptionsMenu();
                                         dialog.cancel();
-                                        switch(which) {
+                                        switch (which) {
                                             case 0: // Default
                                                 savePreferenceItems(true);
                                                 break;
@@ -223,9 +241,9 @@ public class MainActivity extends PreferenceActivity {
                 dialog.show();
                 break;
             case MENU_ACTION:
-                if(mShowing) {
+                if (mShowing) {
                     mShowing = false;
-                    for(int i = 0; i<mRoot.getPreferenceCount(); i++){
+                    for (int i = 0; i < mRoot.getPreferenceCount(); i++) {
                         int hash = Utils.getStringHash(mRoot.getPreference(i)
                                 .getSummary().toString());
                         mNotificationManager.cancel(hash);
@@ -237,10 +255,13 @@ public class MainActivity extends PreferenceActivity {
                 Utils.saveStatus(mShowing, mContext);
                 invalidateOptionsMenu();
                 break;
-            case MENU_EXTENSIONS:
-            	Intent intent = new Intent(this, ExtensionsActivity.class);
-    	        this.startActivity(intent);
+            case MENU_NOTES:
+                Intent intent = new Intent(this, NotesActivity.class);
+                this.startActivity(intent);
                 break;
+        }
+        if(mShowcaseView != null) {
+            mShowcaseView.hide();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -252,7 +273,8 @@ public class MainActivity extends PreferenceActivity {
             case CUSTOM_USER_ICON:
                 if (resultCode == Activity.RESULT_OK) {
                     File image = new File(mContext.getFilesDir() + File.separator
-                            + "icon_" + System.currentTimeMillis() + ".png");
+                            + "icon_" + System.currentTimeMillis() + "."
+                            + Bitmap.CompressFormat.PNG.toString().toLowerCase());
                     String path = image.getAbsolutePath();
                     if (mImageTmp.exists()) {
                         mImageTmp.renameTo(image);
@@ -272,22 +294,31 @@ public class MainActivity extends PreferenceActivity {
                 break;
         }
     }
-    
-    public void savePreferenceItems(boolean create){
+
+    public void savePreferenceItems(boolean create) {
+        if (ShowcaseUtils.needsShowcase(this, ShowcaseUtils.SHOWCASE_START_SERVICE)) {
+            mShowcaseView = ShowcaseView.insertShowcaseViewWithType(ShowcaseView.ITEM_ACTION_ITEM,
+                    MENU_ACTION, this, R.string.start_service, R.string.start_service_summary, null);
+            mShowcaseView.setShowcaseIndicatorScale(0.5f);
+            ShowcaseUtils.setShowcased(this, ShowcaseUtils.SHOWCASE_START_SERVICE);
+        }
+
         ArrayList<String> items = new ArrayList<String>();
-        for(int i = 0; i<mRoot.getPreferenceCount(); i++){
+        for (int i = 0; i < mRoot.getPreferenceCount(); i++) {
             String packageName = mRoot.getPreference(i)
                     .getSummary().toString();
             items.add(packageName);
-            if(create && mShowing) Utils.createNotification(mContext, mNotificationManager, packageName);
+            if (create && mShowing) {
+                Utils.createNotification(mContext, mNotificationManager, packageName);
+            }
         }
         Utils.saveArray(items.toArray(new String[items.size()]), mContext);
     }
-    
-    public void loadPreferenceItems(){
+
+    public void loadPreferenceItems() {
         String[] packages = Utils.loadArray(mContext);
-        if(packages == null) return;
-        for(String packageName : packages){
+        if (packages == null) return;
+        for (String packageName : packages) {
             Preference app = new Preference(mContext);
             app.setTitle(Utils.getApplicationName(packageName, mContext));
             app.setSummary(packageName);
@@ -296,54 +327,24 @@ public class MainActivity extends PreferenceActivity {
             mRoot.addPreference(app);
         }
     }
-    
-    public void helperDialogs(){
-    	// On first run: Show a Dialog to explain the user the utility of Halo))).
-        // We will store the firstrun as a SharedPreference.
 
-        boolean firstrun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("firstrun", true);
+    public void showFirstRunDialog() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean firstRun = prefs.getBoolean(FIRST_RUN, true);
 
-        if (firstrun) {
-        	// Create HelperActivity as a dialog
-        	Intent intent = new Intent(this, HelperActivity.class);
-	        this.startActivity(intent);
+        if (firstRun) {
+            if (!Utils.isParanoidRom()) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
-        	// Save a shared Preference explaining to the app that it has been run previously
-        	getSharedPreferences("PREFERENCE", MODE_PRIVATE)
-        		.edit()
-        		.putBoolean("firstrun", false)
-        		.commit();        	
-        }
-        else{
-        	//Try to check if the device has PA installed.
-    		
-    		String hasPa = Utils.getProp("ro.pa");
-    		
-    		if(hasPa.equals("true")){
-    			// You're clever dude! No advice must be shown!
+                builder.setMessage(R.string.no_pa_rom_content)
+                        .setTitle(R.string.no_pa_rom_title)
+                        .setPositiveButton(R.string.no_pa_rom_ok, null);
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
-    		else{
-    			AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-
-    			builder.setMessage(R.string.nopa_content)
-    			       .setTitle(R.string.nopa_title)
-    			       .setPositiveButton(R.string.nopa_download, new DialogInterface.OnClickListener() {
-    			           public void onClick(DialogInterface dialog, int id) {
-    			        	   String url = "http://goo.im/devs/paranoidandroid/roms";
-    			        	   Intent i = new Intent(Intent.ACTION_VIEW);
-    			        	   i.setData(Uri.parse(url));
-    			        	   startActivity(i);
-    			           }
-    			       })   
-    			       .setNegativeButton(R.string.nopa_ok, new DialogInterface.OnClickListener() {
-    			           public void onClick(DialogInterface dialog, int id) {
-    			        	   dialog.dismiss();
-    			           }
-    			       });
-
-    			AlertDialog nopa_dialog = builder.create();
-    			nopa_dialog.show();
-    		}
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean(FIRST_RUN, false).commit();
         }
     }
 

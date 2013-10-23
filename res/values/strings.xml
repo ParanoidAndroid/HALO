@@ -20,7 +20,7 @@
 <resources>
 
     <string name="app_name">HALO)))</string>
-    <string name="tap_to_launch">Tap to launch the Application</string>
+    <string name="tap_to_launch">Tap to launch the application</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="add">Pin</string>
@@ -32,26 +32,23 @@
 
     <string name="stop_to_remove">Please stop the service before removing any application from the list, as not doing so will result in force closes, potentially forcing you to re-flash your ROM.</string>
 
-    <string name="ext_notes">Notes</string>
-    <string name="ext_note1">Note 1</string>
-    <string name="ext_note2">Note 2</string>
-    <string name="ext_note3">Note 3</string>
-    <string name="ext_note4">Note 4</string>
-    <string name="extensions">Extensions</string>
+    <string name="notes">Notes</string>
+    <string name="note">Note</string>
+    <string name="empty">Empty note</string>
 
-    <string name="helper_static_2">Using HALO)))</string>
-    <string name="helper_static_3">Understanding HALO))) is very simple. Just tap on the Pin button in your Action Bar. Note that the button may be on the top or the bottom of your screen.</string>
-    <string name="helper_static_4">Next, Click the desired application you\'d like to pin on Halo from the list.</string>
-    <string name="helper_static_5">Finally, click on the Start Button and you’re done. If you want to disable HALO))), Click on the \'Stop\' button.</string>
-	
-    <string name="nopa_title">Is ParanoidAndroid installed?</string>
-    <string name="nopa_content">Halo))) is explicitly designed to work on ParanoidAndroid ROMs. You may not be able to experience the full potential and features, of HALO.</string>
-    <string name="nopa_ok">Okay</string>
-    <string name="nopa_download">Install ParanoidAndroid</string>
+    <string name="no_pa_rom_title">Your are not running a compatible ROM!</string>
+    <string name="no_pa_rom_content">HALO))) is explicitly designed to work on ParanoidAndroid ROMs. You will not be able to unleash the full potential of the application!</string>
+    <string name="no_pa_rom_ok">Ok</string>
     
     <string name="description_1">Helper 1</string>
     <string name="description_2">Helper 2</string>
     <string name="description_3">Helper 3</string>
     <string name="preferenceicon_imageview">preferenceiconImageView</string>
 
+    <!-- Showcase -->
+    <string name="ok">OK</string>
+    <string name="pin_applications">Pin applications</string>
+    <string name="pin_applications_summary">You can keep your applications pinned on HALO, for quicker access</string>
+    <string name="start_service">Start service</string>
+    <string name="start_service_summary">You can show or hide your pinned apps by just a tap</string>
 </resources>
