@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2013 ParanoidAndroid Project
+
+  This file is part of HALO.
+
+  HALO is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  HALO is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with HALO.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+
+    <string name="app_name">HALO)))</string>
+    <string name="tap_to_launch">点击打开应用程序</string>
+    <string name="start">启动</string>
+    <string name="stop">停止</string>
+    <string name="add">添加</string>
+    <string name="choose_app">添加应用程序</string>
+    <string name="icon_picker_type">选择图标类型：</string>
+    <string name="icon_default">默认</string>
+    <string name="icon_custom">自定义</string>
+    <string name="unknown">未知</string>
+    
+    <string name="stop_to_remove">在移除应用程序前，請先停止服务。否则将导致程序意外终止甚至需要重刷ROM</string>
+    
+    <string name="ext_notes">笔记</string>
+    <string name="ext_note1">笔记 1</string>
+    <string name="ext_note2">笔记 2</string>
+    <string name="ext_note3">笔记 3</string>
+    <string name="ext_note4">笔记 4</string>
+    <string name="extensions">插件</string>
+
+    <string name="helper_static_2">"使用 HALO)))"</string>
+    <string name="helper_static_3">"使用 HALO))) 很简单，只需要按ActionBar上的添加按鈕"</string>
+    <string name="helper_static_4">"然后选择想要添加到 Halo 的应用程序"</string>
+    <string name="helper_static_5">"最后点击启动按钮。如果你想停用 HALO)))，点击停止。"</string>
+        
+    <string name="nopa_title">ParanoidAndroid 是否已经安装？</string>
+    <string name="nopa_content">"HALO))) 专为 ParanoidAndroid ROM 设计，你可能无法体验到 Halo 的完整功能。"</string>
+    <string name="nopa_ok">"确定"</string>
+    <string name="nopa_download">安裝 ParanoidAndroid</string>
+    
+    <string name="description_1">提示 1</string>
+    <string name="description_2">提示 2</string>
+    <string name="description_3">提示 3</string>
+    <string name="preferenceicon_imageview">preferenceiconImageView</string>
