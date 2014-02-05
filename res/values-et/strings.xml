@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HALO)))</string>
+    <string name="tap_to_launch">Toksake Rakenduse käivitamiseks</string>
+    <string name="start">Alusta</string>
+    <string name="stop">Peata</string>
+    <string name="add">Kinnita</string>
+    <string name="choose_app">Kinnita rakendus</string>
+    <string name="icon_picker_type">Valige ikooni tüüp:</string>
+    <string name="icon_default">Vaikimisi</string>
+    <string name="icon_custom">Kohandatud</string>
+    <string name="unknown">Tundmatu</string>
+    
+    <string name="stop_to_remove">Palun lõpetage teenus enne rakenduse eemaldamist loendist</string>
+
+    <string name="extensions">Laiendused</string>
+
+</resources>

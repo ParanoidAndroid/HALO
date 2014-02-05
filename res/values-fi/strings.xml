@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HALO)))</string>
+    <string name="tap_to_launch">Kosketa käynnistääksesi sovelluksen</string>
+    <string name="start">Aloita</string>
+    <string name="stop">Lopeta</string>
+    <string name="add">Kiinnitä</string>
+    <string name="choose_app">Kiinnitä sovellus</string>
+    <string name="icon_picker_type">Valitse ikonin tyyppi:</string>
+    <string name="icon_default">Oletus</string>
+    <string name="icon_custom">Mukautettu</string>
+    <string name="unknown">Tuntematon</string>
+    
+    <string name="stop_to_remove">Lopeta palvelu ennen kuin poistat sovelluksen luettelosta</string>
+    
+    <string name="extensions">Laajennukset</string>
+
+</resources>
