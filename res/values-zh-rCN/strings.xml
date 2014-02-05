@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HALO)))</string>
+    <string name="tap_to_launch">按一下运行程序</string>
+    <string name="start">运行</string>
+    <string name="stop">停止</string>
+    <string name="add">加入</string>
+    <string name="choose_app">加入程序</string>
+    <string name="icon_picker_type">选择图案种类：</string>
+    <string name="icon_default">默认</string>
+    <string name="icon_custom">自定义</string>
+    <string name="unknown">未知</string>
+    <string name="stop_to_remove">在移除任何程序前，请先停止服务。</string>
+    <string name="ext_note1">注释 1</string>
+    <string name="ext_note2">注释 2</string>
+    <string name="ext_note3">注释 3</string>
+    <string name="ext_note4">注释 4</string>
+    <string name="extensions">插件</string>
+
+</resources>
